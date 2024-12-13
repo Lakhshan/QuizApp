@@ -27,14 +27,14 @@ cd django-quiz-app
 ```
 python -m venv venv
 ```
-Activate the virtual environment:
+    Activate the virtual environment:
 
-On Windows:
+    On Windows:
 
 ```
 venv\Scripts\activate
 ```
-On macOS/Linux:
+   On macOS/Linux:
 
 ```
 source venv/bin/activate
@@ -43,13 +43,13 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-If you don't have the requirements.txt file, you can generate it by running:
+   If you don't have the requirements.txt file, you can generate it by running:
 ```
 pip freeze > requirements.txt
 ```
 **4. Apply Migrations**
 
-Make sure to apply the database migrations to set up your models:
+   Make sure to apply the database migrations to set up your models:
 ```
 python manage.py migrate
 ```
