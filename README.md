@@ -8,6 +8,11 @@ Get a random multiple-choice question.
 Submit an answer for each question.
 View the summary of the total questions answered, along with correct and incorrect answers.
 
+# Usage
+- Start a New Quiz: Click on "Start a New Quiz" to begin the session.
+- Answer Questions: Select an option for each question and submit.
+- View Summary: Once you've answered all questions, view the summary of correct and incorrect answers.
+
 ## Prerequisites
 - Python 3.8+ (for development)
 - Django 4.0+ (for the web framework)
