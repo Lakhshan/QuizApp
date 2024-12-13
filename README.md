@@ -1,12 +1,16 @@
-# Django Quiz App
+# Django Quiz App 📝
 
-A simple quiz application built using Django. This app allows a user to take a quiz, answer random multiple-choice questions, and view the results with details about correct and incorrect submissions.
+A simple Django-based web application for a quiz system. This app allows a single user to:
+
+- Start a new quiz session.
+- Answer randomly selected multiple-choice questions.
+- Submit answers and view results, including correct and incorrect submissions.
 
 Features
-Start a new quiz session.
-Get a random multiple-choice question.
-Submit an answer for each question.
-View the summary of the total questions answered, along with correct and incorrect answers.
+- **Quiz Session Management:** Start a new quiz session.
+- **Random Questions:** Fetch a random question from the database.
+- **Answer Submission:** Submit answers and receive feedback.
+- **Progress Tracking:** View statistics such as total questions answered and a breakdown of correct/incorrect answers.
 
 ## Usage
 - Start a New Quiz: Click on "Start a New Quiz" to begin the session.
@@ -14,8 +18,9 @@ View the summary of the total questions answered, along with correct and incorre
 - View Summary: Once you've answered all questions, view the summary of correct and incorrect answers.
 
 ## Prerequisites
-- Python 3.8+ (for development)
-- Django 4.0+ (for the web framework)
+- Python 3.8+
+- Django 4.0+
+- SQLite (default database, or any other database supported by Django)
 
 ## Installation
 **1. Clone the Repository**
@@ -27,9 +32,9 @@ cd django-quiz-app
 ```
 python -m venv venv
 ```
-    Activate the virtual environment:
+Activate the virtual environment:
 
-    On Windows:
+   On Windows:
 
 ```
 venv\Scripts\activate
@@ -41,19 +46,16 @@ source venv/bin/activate
 ```
 **3. Install Dependencies**
 ```
-pip install -r requirements.txt
-```
-   If you don't have the requirements.txt file, you can generate it by running:
-```
-pip freeze > requirements.txt
+pip install dajango
 ```
 **4. Apply Migrations**
 
    Make sure to apply the database migrations to set up your models:
 ```
+python manage.py makemigrations
 python manage.py migrate
 ```
-**5. Create a Superuser (Optional)**
+**5. Create a Superuser (for managing questions via Django Admin)**
 
 To access the Django admin panel and add quiz questions, create a superuser:
 ```
@@ -66,4 +68,71 @@ Start the Django development server to access the quiz app:
 ```
 python manage.py runserver
 ```
-Visit the app in your browser at http://127.0.0.1:8000/ to start the quiz!
+
+**7.Access the Application:**
+- Open your browser and navigate to http://127.0.0.1:8000/quiz/
+- Access the admin panel at http://127.0.0.1:8000/admin/ to add questions.
+
+## API Endpoints
+
+
+**1. Start Quiz Session**
+
+URL: `/quiz/start/`
+
+Method: `GET`
+
+Response:  `{ "message": "New quiz session started", "session_id": <id> }`
+
+
+**2.Get Random Question**
+
+URL: `/quiz/question/<session_id>/`
+
+Method: `GET`
+
+Response:
+```
+{
+    "question_id": 1,
+    "question_text": "What is the capital of India?",
+    "options": {
+        "A": "Delhi",
+        "B": "Bangalore ",
+        "C": "Mumbai",
+        "D": "Madrid"
+    }
+}
+
+```
+
+
+**3.Submit Answer**
+
+URL: `/quiz/submit/<session_id>/?question_id=<id>&selected_option=<option>`
+
+Method: GET
+
+Response: { "message": "Answer submitted" }
+
+
+
+**4.Get Score**
+
+URL: `/quiz/score/<session_id>/`
+
+Method: `GET`
+
+Response:
+```
+{
+    "total_questions": 5,
+    "correct_answers": 3,
+    "incorrect_answers": 2
+}
+```
+
+## Adding Questions
+- Log in to the Django Admin panel at /admin/.
+- Add new questions under the Questions model. Provide the question text, options, and the correct answer.
+
